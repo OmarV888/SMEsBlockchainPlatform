@@ -58,7 +58,7 @@ const Display = ({ contract, account }) => {
               <a href={item} target="_blank" rel="noopener noreferrer">
                 {fileName} {/* Mostrar el nombre real del archivo */}
               </a>
-              <button className="center button">Borrar</button>
+              <button className="center button" >Borrar</button>
             </div>
           );
         })
@@ -71,8 +71,9 @@ const Display = ({ contract, account }) => {
 
   return (
     <>
-      <div className="image-list">{data}</div>
-
+      <div id="image-item">
+      <div className="image-list" >{data}</div>
+      </div>
       <input type="text" placeholder="Enter Address" className="address" />
 
       <button className="center button" onClick={getdata}>

@@ -1,51 +1,65 @@
 .top {
-    margin: 40px;
-  }
-  
-  input[type="file"] {
-    display: none;
-  }
-  
-  .choose {
-    background-color: initial;
-    background-image: linear-gradient(-180deg, #9aa098, #818b82);
-    border-radius: 6px;
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 6px;
-    margin-right: 10px;
-    padding-bottom: 10px;
-  }
-  .choose:hover {
-    box-shadow: rgba(253, 76, 0, 0.5) 0 3px 8px;
-  }
-  .textArea {
-    color: white;
-  }
-  
-  .upload {
-    border: 1px solid #13aa52;
-    background-color: #13aa52;
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 6px;
-    margin-left: 10px;
-  }
-  
-  .upload:hover {
-    border: 1px solid #13aa52;
-    background-color: #a5efc1;
-    color: #ffffff;
-    padding: 5px 10px;
-  }
-  
-  .upload:disabled,
-  .upload[disabled] {
-    border: 1px solid #999999;
-    background-color: #cccccc;
-    color: #666666;
-  }
-  
-  div {
-    padding: 5px 10px;
-  }
+  margin: 10px;
+  text-align: center; /* Centra el contenido en la página */
+  margin-bottom: 30px;
+}
+
+input[type="file"] {
+  display: none; /* Oculta el input file */
+}
+
+/* Botón para elegir archivo */
+.choose {
+  background-color: #2a76cc; /* Color plano sin degradado */
+  border-radius: 8px; /* Bordes redondeados */
+  color: #ffffff;
+  padding: 8px 16px; /* Espacio más grande para el botón */
+  font-size: 16px; /* Tamaño de fuente más grande */
+  cursor: pointer; /* Cambia el cursor a pointer */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-right: 15px;
+}
+
+.choose:hover {
+  box-shadow: #2a76cc 0 8px 10px; /* Sombra grande */
+  transform: translateY(-3px); /* Efecto de desplazamiento hacia arriba */
+}
+
+.textArea {
+  color: black;
+  font-size: 14px; /* Ajuste de tamaño de fuente */
+  font-weight: 500;
+}
+
+/* Botón de subir archivo */
+.upload {
+  border: 2px solid #13aa52; /* Borde más grueso */
+  background-color: #13aa52;
+  color: #ffffff;
+  padding: 8px 16px; /* Más espacio para hacer el botón más prominente */
+  border-radius: 8px;
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.upload:not(:disabled):hover {
+  box-shadow: rgba(14, 128, 48, 0.884) 0 8px 10px; /* Sombra más grande */
+  transform: translateY(-3px); /* Efecto de desplazamiento hacia arriba */
+}
+
+.upload:disabled,
+.upload[disabled] {
+  border: 2px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Div alrededor del texto */
+div {
+  padding: 10px 20px; /* Aumenta el padding para mayor espacio */
+  text-align: center; /* Centra el contenido */
+}
