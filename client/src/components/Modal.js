@@ -31,7 +31,7 @@ const Modal = ({ setModalOpen, contract }) => {
     <>
       <div className="modalBackground">
         <div className="modalContainer">
-          <div className="title">Share with</div>
+          <div className="title">Compartir con</div>
           <div className="body">
             <input
               type="text"
@@ -41,7 +41,7 @@ const Modal = ({ setModalOpen, contract }) => {
           </div>
           <form id="myForm">
             <select id="selectNumber">
-              <option className="address">People With Access</option>
+              <option className="address">Personas con Acceso</option>
             </select>
           </form>
           <div className="footer">
@@ -51,10 +51,10 @@ const Modal = ({ setModalOpen, contract }) => {
               }}
               id="cancelBtn"
             >
-              Cancel
+              Cancelar
             </button>
-            <button onClick={() => sharing()}>Share</button>
-            <button onClick={() => revoking()}>Revoke</button>
+            <button onClick={() => sharing()}>Compartir</button>
+            <button onClick={() => revoking()}>Revocar</button>
           </div>
         </div>
       </div>

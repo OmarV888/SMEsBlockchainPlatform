@@ -59,7 +59,7 @@ return (
     <div className="top">
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="file-upload" className="choose">
-          Choose Image
+          Elegir Archivo
         </label>
         <input
           type="file"
@@ -68,9 +68,9 @@ return (
           onChange={retrieveFile}
           disabled={!account}
         />
-        <span className="textArea">Image: {filename} </span>
+        <span className="textArea">Imagen: {filename} </span>
         <button type="submit" className="upload" disabled={!file}>
-          Upload File
+          Subir Archivo
         </button>
       </form>
     </div>

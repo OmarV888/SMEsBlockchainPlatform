@@ -60,12 +60,6 @@ function App() {
         <section className="file-section">
           <FileUpload account={account} contract={contract} />
           <Display account={account} contract={contract} />
-          {!modalOpen && (
-          <button className="share" onClick={() => setModalOpen(true)}>
-            Compartir
-          </button>
-        )}
-        {modalOpen && <Modal setModalOpen={setModalOpen} contract={contract} />}
         </section>
       </main>
     </>

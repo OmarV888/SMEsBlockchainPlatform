@@ -1,9 +1,12 @@
 import { useState } from "react";
-import axios from "axios"; // Asegúrate de importar axios
+import axios from "axios"; 
+import Modal from "./Modal";
 import "./Display.css";
 
 const Display = ({ contract, account }) => {
   const [data, setData] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [displayedUser, setDisplayedUser] = useState(account); // Inicia con la cuenta principal
 
   // Función para obtener los metadatos del archivo desde Pinata
   const getFileNameFromPinata = async (hash) => {
@@ -18,13 +21,12 @@ const Display = ({ contract, account }) => {
       });
 
       if (response.data.rows.length > 0) {
-        // Verificamos si hay metadatos disponibles y devolvemos el nombre del archivo
-        const fileName = response.data.rows[0].metadata.name || "Archivo"; // Usamos "Archivo" como fallback
+        const fileName = response.data.rows[0].metadata.name || "Archivo";
         return fileName;
       }
     } catch (error) {
       console.error("Error al obtener el nombre del archivo:", error);
-      return "Archivo"; // Si falla, retorna un valor por defecto
+      return "Archivo";
     }
   };
 
@@ -35,9 +37,11 @@ const Display = ({ contract, account }) => {
     try {
       if (OtherAddress) {
         dataArray = await contract.display(OtherAddress);
+        setDisplayedUser(OtherAddress); // Muestra el nombre del usuario ingresado
         console.log(dataArray);
       } else {
         dataArray = await contract.display(account);
+        setDisplayedUser(account); // Restablece el nombre de la cuenta principal
         console.log(dataArray);
       }
     } catch (error) {
@@ -47,38 +51,60 @@ const Display = ({ contract, account }) => {
     const isEmpty = Object.keys(dataArray).length === 0;
 
     if (!isEmpty) {
-      // En cada lista hay un enlace, en cada iteración extraemos y mostramos el nombre del archivo
       const images = await Promise.all(
         dataArray.map(async (item, i) => {
-          const fileHash = item.split("/")[4]; // Obtener el hash del enlace de Pinata
-          const fileName = await getFileNameFromPinata(fileHash); // Llama a la función para obtener el nombre del archivo
+          const fileHash = item.split("/")[4];
+          const fileName = await getFileNameFromPinata(fileHash);
 
           return (
             <div key={`a-${i}`} className="file-entry">
               <a href={item} target="_blank" rel="noopener noreferrer">
-                {fileName} {/* Mostrar el nombre real del archivo */}
+                {fileName}
               </a>
-              <button className="center button" >Borrar</button>
+              <button className="center button">Borrar</button>
             </div>
           );
         })
       );
       setData(images);
     } else {
-      alert("No images to display");
+      alert("No hay imágenes para mostrar");
     }
+  };
+
+  const handleMyFiles = () => {
+    setDisplayedUser(account); // Restablece el nombre de la cuenta principal
+    setData([]); // Limpia los archivos anteriores si se necesita.
+    document.querySelector(".address").value = ""; // Limpia el campo de texto
+    getdata(); // Obtiene los archivos de la cuenta principal
   };
 
   return (
     <>
-      <div id="image-item">
-      <div className="image-list" >{data}</div>
-      </div>
-      <input type="text" placeholder="Enter Address" className="address" />
+      <div className="button-container">
+        {!modalOpen && (
+          <button className="share" onClick={() => setModalOpen(true)}>
+            Compartir
+          </button>
+        )}
+        {modalOpen && <Modal setModalOpen={setModalOpen} contract={contract} />}
 
-      <button className="center button" onClick={getdata}>
-        Get Data
-      </button>
+        <button className="btn_Arch" onClick={handleMyFiles}>
+          Mis Archivos
+        </button>
+      </div>
+
+      <div id="image-item">
+        <p className="tag_arch">Archivos de {displayedUser}</p> {/* Cambia a displayedUser */}
+        <div className="image-list">{data}</div>
+      </div>
+
+      <div className="input-container">
+        <input type="text" placeholder="Ingresar Usuario" className="address" />
+        <button className="center button" onClick={getdata}>
+          Obtener Archivos
+        </button>
+      </div>
     </>
   );
 };

@@ -7,8 +7,29 @@
   background-color: #e6f7ff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
-
-
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 10px; /* Añade un pequeño espacio entre los botones */
+  margin-bottom: 10px;
+  margin-left: 80%; /* Ajusta según el margen deseado */
+}
+.btn_Arch, .share {
+  display: inline-block; /* Asegura que se alineen uno al lado del otro */
+  white-space: nowrap;
+  margin: 0;
+  padding: 12px 20px; /* Ajuste de padding para centrar el texto */
+  height: 40px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center; /* Centra el texto horizontalmente */
+  align-items: center; /* Centra el texto verticalmente */
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .image-list {
   display: flex;
   flex-direction: column;
@@ -71,9 +92,34 @@
 .center {
   margin: 20px 0;
 }
+.tag_arch{
+  display: flex;
+  margin-left: 30px;
+  color: #0a2bbe;
+  font-size: 18px;
+  font-weight: bold;
+}
+.share {
+  background-color: #0072ff;
+}
 
+.share:hover {
+  transform: scale(1.05);
+}
 
+.input-container {
+  display: flex;  
+  align-items: center; 
+  gap: 10px; 
+}
+.btn_Arch {
+  background-color: #28a745;
+}
+.btn_Arch:hover, .share:hover {
+  transform: scale(1.05);
+}
 .button {
+  display: flex;
   background-color: #28a745;
   padding: 8px 16px;
   border-radius: 6px;
@@ -97,6 +143,7 @@
   border: 2px solid #009ffd;
   border-radius: 8px;
   text-align: center;
+
 }
 
 input[type="text"]:focus {
