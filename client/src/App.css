@@ -64,3 +64,38 @@ button {
     padding: 10px;
   }
 }
+
+.cierre {
+  padding: 8px 12px;
+  background-color: #dc3545 !important; /* Rojo */
+  color: white !important; /* Texto blanco */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+  position: absolute; /* Posiciona el botón fuera del flujo normal del documento */
+  left: 20px; /* Mueve el botón al borde izquierdo */
+  top: 20px; /* Ajusta la posición superior si es necesario */
+  margin-left: 10px; /* Añade un pequeño margen para no pegarlo totalmente al borde */
+}
+.cierre:hover {
+  background-color: #c82333 !important; /* Un rojo más oscuro para el hover */
+  transform: scale(1.05);
+}
+
+
+.sesion{
+  padding: 8px 12px;
+  background-color: green !important; /* Rojo */
+  color: white !important; /* Texto blanco */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.sesion:hover {
+  background-color: green !important; /* Un rojo más oscuro para el hover */
+  transform: scale(1.05);
+}
+

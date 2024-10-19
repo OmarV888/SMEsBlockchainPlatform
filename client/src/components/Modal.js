@@ -1,16 +1,43 @@
 import { useEffect } from "react";
 import "./Modal.css";
+
 const Modal = ({ setModalOpen, contract }) => {
+  // Función para compartir acceso
   const sharing = async () => {
     const address = document.querySelector(".address").value;
-    await contract.allow(address);
-    setModalOpen(false);
+    try {
+      await contract.allow(address);
+      alert("Acceso compartido exitosamente.");
+      setModalOpen(false);
+    } catch (error) {
+      // Manejar error si el usuario rechaza la transacción
+      if (error.code === 4001) {
+        alert("Transacción rechazada por el usuario.");
+      } else {
+        console.error("Error al compartir acceso:", error);
+        alert("Debe ingresar el usuario de la persona con quien compartir acceso.");
+      }
+    }
   };
+
+  // Función para revocar acceso
   const revoking = async () => {
     const address = document.querySelector(".address").value;
-    await contract.disallow(address);
-    setModalOpen(false);
+    try {
+      await contract.disallow(address);
+      alert("Acceso revocado exitosamente.");
+      setModalOpen(false);
+    } catch (error) {
+      // Manejar error si el usuario rechaza la transacción
+      if (error.code === 4001) {
+        alert("Transacción rechazada por el usuario.");
+      } else {
+        console.error("Error al revocar acceso:", error);
+        alert("Debe ingresar el usuario de la persona a quien revocar acceso.");
+      }
+    }
   };
+
   useEffect(() => {
     const accessList = async () => {
       const addressList = await contract.shareAccess();
@@ -27,6 +54,7 @@ const Modal = ({ setModalOpen, contract }) => {
     };
     contract && accessList();
   }, [contract]);
+
   return (
     <>
       <div className="modalBackground">
@@ -61,4 +89,5 @@ const Modal = ({ setModalOpen, contract }) => {
     </>
   );
 };
+
 export default Modal;

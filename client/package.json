@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.7",
     "client": "file:",
+    "create-react-app": "^5.0.1",
     "ethers": "^5.7.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
